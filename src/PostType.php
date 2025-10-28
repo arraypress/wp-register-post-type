@@ -239,6 +239,7 @@ class PostType {
 						height: auto;
 						display: block;
 						margin: 0 auto;
+						border-radius: 4px;
 					}
 				</style>';
 			} );
