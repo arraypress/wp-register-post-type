@@ -69,17 +69,17 @@ class PostType {
 	 */
 	private function parse_config( array $config ): array {
 		$defaults = [
-			'labels'         => [],
-			'public'         => true,
-			'has_archive'    => true,
-			'show_in_rest'   => true,
-			'supports'       => [ 'title', 'editor', 'thumbnail' ],
-			'menu_position'  => null,
-			'menu_icon'      => null,
+			'labels'          => [],
+			'public'          => true,
+			'has_archive'     => true,
+			'show_in_rest'    => true,
+			'supports'        => [ 'title', 'editor', 'thumbnail' ],
+			'menu_position'   => null,
+			'menu_icon'       => null,
 			'capability_type' => 'post',
-			'rewrite'        => true,
-			'permalink'      => [],
-			'admin_columns'  => []
+			'rewrite'         => true,
+			'permalink'       => [],
+			'admin_columns'   => []
 		];
 
 		$config = wp_parse_args( $config, $defaults );
@@ -206,7 +206,8 @@ class PostType {
 	 */
 	private function setup_admin_columns( array $columns ): void {
 		if ( ! empty( $columns['thumbnail'] ) ) {
-			add_filter( "manage_{$this->post_type}_posts_columns", function( $cols ) {
+			// Add thumbnail column
+			add_filter( "manage_{$this->post_type}_posts_columns", function ( $cols ) {
 				$new_cols = [];
 				foreach ( $cols as $key => $label ) {
 					if ( $key === 'title' ) {
@@ -214,14 +215,33 @@ class PostType {
 					}
 					$new_cols[ $key ] = $label;
 				}
+
 				return $new_cols;
 			} );
 
-			add_action( "manage_{$this->post_type}_posts_custom_column", function( $column, $post_id ) {
+			// Render thumbnail
+			add_action( "manage_{$this->post_type}_posts_custom_column", function ( $column, $post_id ) {
 				if ( $column === 'thumbnail' ) {
-					echo get_the_post_thumbnail( $post_id, [ 50, 50 ] );
+					$thumbnail = get_the_post_thumbnail( $post_id, [ 50, 50 ] );
+					echo $thumbnail ?: '—';
 				}
 			}, 10, 2 );
+
+			// Add CSS to constrain column width
+			add_action( 'admin_head', function () {
+				echo '<style>
+					.wp-list-table .column-thumbnail {
+						width: 60px;
+						text-align: center;
+					}
+					.wp-list-table .column-thumbnail img {
+						max-width: 50px;
+						height: auto;
+						display: block;
+						margin: 0 auto;
+					}
+				</style>';
+			} );
 		}
 	}
 
