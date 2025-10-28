@@ -235,7 +235,7 @@ class PostType {
 						text-align: center;
 					}
 					.wp-list-table .column-thumbnail img {
-						max-width: 0px;
+						max-width: 50px;
 						height: auto;
 						display: block;
 						margin: 0 auto;
