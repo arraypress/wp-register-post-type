@@ -231,11 +231,11 @@ class PostType {
 			add_action( 'admin_head', function () {
 				echo '<style>
 					.wp-list-table .column-thumbnail {
-						width: 60px;
+						width: 70px;
 						text-align: center;
 					}
 					.wp-list-table .column-thumbnail img {
-						max-width: 50px;
+						max-width: 0px;
 						height: auto;
 						display: block;
 						margin: 0 auto;
