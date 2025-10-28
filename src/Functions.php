@@ -11,7 +11,7 @@
 
 declare( strict_types=1 );
 
-namespace ArrayPress\WP\RegisterPostType;
+use ArrayPress\WP\RegisterPostType\PostType;
 
 if ( ! function_exists( 'register_cpt' ) ) {
 	/**
