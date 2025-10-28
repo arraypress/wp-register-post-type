@@ -1,0 +1,34 @@
+{
+  "name": "arraypress/wp-register-post-type",
+  "description": "A powerful library for registering custom post types in WordPress with smart defaults, automatic label generation, and permalink management.",
+  "type": "library",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "wordpress",
+    "post-type",
+    "cpt",
+    "custom-post-type",
+    "register",
+    "permalink",
+    "rewrite"
+  ],
+  "authors": [
+    {
+      "name": "David Sherlock",
+      "email": "david@arraypress.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "ArrayPress\\WP\\RegisterPostType\\": "src/"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
