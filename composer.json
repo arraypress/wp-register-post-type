@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ArrayPress\\WP\\RegisterPostType\\": "src/"
+      "ArrayPress\\RegisterPostType\\": "src/"
     },
     "files": [
       "src/Functions.php"
